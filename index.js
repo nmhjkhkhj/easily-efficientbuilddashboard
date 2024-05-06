@@ -1,16 +1,3 @@
-const quickSort = (arr) => {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
-  }
-  return quickSort(left).concat(pivot, quickSort(right));
-};
+function findNumbers(nums) {
+  return nums.filter((num) => num.toString().length % 2 === 0).length;
+}
