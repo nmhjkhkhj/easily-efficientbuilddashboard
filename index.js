@@ -1,4 +1,17 @@
-function largestNumber(nums) {
-  if (nums.every((num) => num === 0)) return "0";
-  return nums.sort((a, b) => `${b}${a}` - `${a}${b}`).join("");
+function countPrimes(n) {
+  const isPrime = new Array(n).fill(true);
+  isPrime[0] = false;
+  isPrime[1] = false;
+  for (let i = 2; i * i < n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j < n; j += i) {
+        isPrime[j] = false;
+      }
+    }
+  }
+  let count = 0;
+  for (let i = 2; i < n; i++) {
+    if (isPrime[i]) count++;
+  }
+  return count;
 }
