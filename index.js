@@ -1,17 +1,19 @@
-function countPrimes(n) {
-  const isPrime = new Array(n).fill(true);
-  isPrime[0] = false;
-  isPrime[1] = false;
-  for (let i = 2; i * i < n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j < n; j += i) {
-        isPrime[j] = false;
-      }
-    }
+function rotateRight(head, k) {
+  if (!head) return null;
+  let length = 1;
+  let tail = head;
+  while (tail.next) {
+    length++;
+    tail = tail.next;
   }
-  let count = 0;
-  for (let i = 2; i < n; i++) {
-    if (isPrime[i]) count++;
+  k %= length;
+  if (k === 0) return head;
+  let newTail = head;
+  for (let i = 0; i < length - k - 1; i++) {
+    newTail = newTail.next;
   }
-  return count;
+  const newHead = newTail.next;
+  newTail.next = null;
+  tail.next = head;
+  return newHead;
 }
